@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -24,45 +24,47 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="finalExamples">
+</head>
+<body ng-app="finalExamples">
+<div class="bar bar-header bar-positive">
+    <h1 class="title">Ejemplos finales :)</h1>
+</div>
 
-  <ion-side-menus ng-controller="contactController">
-    <ion-side-menu-content>
-    <ion-pane>
-      <ion-header-bar align-title="center" class="bar-positive">
-        <div class="buttons">
-          <button class="button" ng-click="toggleLeft()">Acciones</button>
+<ion-tabs class="tabs-positive tabs-icon-top">
+    <ion-tab title="Cámara" icon-on="ion-ios-camera" icon-off="ion-ios-camera">
+        <ion-content>
+            <div class="bar bar-subheader">
+                <h2 class="title">Acciones</h2>
+            </div>
+
+        </ion-content>
+    </ion-tab>
+    <ion-tab title="Contáctos" icon-on="ion-person-stalker" icon-off="ion-person-stalker"
+             ng-controller="contactController as vm">
+        <div class="bar bar-subheader">
+            <button class="button icon-left ion-person-add" ng-click="openModal()">Crear</button>
+            <h2 class="title">Contáctos</h2>
+            <button class="button icon-right ion-loop" ng-click="getContactList()">Recargar</button>
         </div>
-        <h1 class="title">Ejemplos Finales :)</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-      <div class="bar bar-footer">
-        <div class="tabs tabs-icon-top">
-          <a class="tab-item">
-            <i class="icon ion-person-stalker"></i>
-            Contactos
-          </a>
-          <a class="tab-item">
-            <i class="icon ion-pinpoint"></i>
-            GeoAPI
-          </a>
-          <a class="tab-item">
-            <i class="icon ion-ios-camera"></i>
-            Cámara
-          </a>
-        </div>
-      </div>
-    </ion-pane>
-    </ion-side-menu-content>
-    <ion-side-menu side="left">
-      <ion-list>
-        <ion-item>
-          Crear contacto
-        </ion-item>
-      </ion-list>
-    </ion-side-menu>
-  </ion-side-menus>
-  </body>
+        <ion-content class="has-subheader">
+            <ion-list>
+                <ion-item ng-repeat="contact in contacts" class="item-button-right">
+                    {{contact.displayName}}
+                    <button class="button button-assertive button-small icon ion-android-close">
+                    </button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+
+    </ion-tab>
+    <ion-tab title="GeoAPI" icon-on="ion-pinpoint" icon-off="ion-pinpoint">
+        <ion-content>
+            <div class="bar bar-subheader">
+                <h2 class="title">Acciones</h2>
+            </div>
+
+        </ion-content>
+    </ion-tab>
+</ion-tabs>
+</body>
 </html>
