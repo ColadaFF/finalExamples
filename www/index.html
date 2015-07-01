@@ -1,70 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
 
 
-    <!--ngCordova Script, debe ser cargado antes que el archivo cordova.js-->
-    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+  <!--ngCordova Script, debe ser cargado antes que el archivo cordova.js-->
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
 </head>
+
 <body ng-app="finalExamples">
-<div class="bar bar-header bar-positive">
+  <div class="bar bar-header bar-positive">
     <h1 class="title">Ejemplos finales :)</h1>
-</div>
+  </div>
 
-<ion-tabs class="tabs-positive tabs-icon-top">
+  <ion-tabs class="tabs-positive tabs-icon-top" ng-controller="cameraController">
     <ion-tab title="Cámara" icon-on="ion-ios-camera" icon-off="ion-ios-camera">
-        <ion-content>
-            <div class="bar bar-subheader">
-                <h2 class="title">Acciones</h2>
-            </div>
-
-        </ion-content>
+      <div class="bar bar-subheader">
+        <button class="button icon-left ion-person-add" ng-click="takePicture()">Tomar Foto</button>
+        <h2 class="title">Cámara</h2>
+        <button class="button icon-right ion-loop" ng-click="pictureURL()">Obtener URL</button>
+      </div>
+      <ion-content class="has-subheader">
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+        <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+      </ion-content>
     </ion-tab>
-    <ion-tab title="Contáctos" icon-on="ion-person-stalker" icon-off="ion-person-stalker"
-             ng-controller="contactController as vm">
-        <div class="bar bar-subheader">
-            <button class="button icon-left ion-person-add" ng-click="openModal()">Crear</button>
-            <h2 class="title">Contáctos</h2>
-            <button class="button icon-right ion-loop" ng-click="getContactList()">Recargar</button>
-        </div>
-        <ion-content class="has-subheader">
-            <ion-list>
-                <ion-item ng-repeat="contact in contacts" class="item-button-right">
-                    {{contact.displayName}}
-                    <button class="button button-assertive button-small icon ion-android-close">
-                    </button>
-                </ion-item>
-            </ion-list>
-        </ion-content>
+    <ion-tab title="Contáctos" icon-on="ion-person-stalker" icon-off="ion-person-stalker" ng-controller="contactController as vm">
+      <div class="bar bar-subheader">
+        <button class="button icon-left ion-person-add" ng-click="openModal()">Crear</button>
+        <h2 class="title">Contáctos</h2>
+        <button class="button icon-right ion-loop" ng-click="getContactList()">Recargar</button>
+      </div>
+      <ion-content class="has-subheader">
+        <ion-list>
+          <ion-item ng-repeat="contact in contacts" class="item-button-right">
+            {{contact.displayName}}
+            <button class="button button-assertive button-small" ng-click="removeContact(contact)">
+              Eliminar
+            </button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
 
     </ion-tab>
-    <ion-tab title="GeoAPI" icon-on="ion-pinpoint" icon-off="ion-pinpoint">
-        <ion-content>
-            <div class="bar bar-subheader">
-                <h2 class="title">Acciones</h2>
-            </div>
-
-        </ion-content>
-    </ion-tab>
-</ion-tabs>
+  </ion-tabs>
 </body>
+
 </html>
